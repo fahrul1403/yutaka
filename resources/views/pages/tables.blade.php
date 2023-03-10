@@ -37,7 +37,7 @@
                                             <h5 class="col-sm-2 col-form-label">Delivery Time</h5>
                                             <div class="col-sm-10">
                                                 <input type="date" class="form-control" placeholder="dd/mm/yyyy"
-                                                    name="date" id="date">
+                                                    name="delivery_date" id="date">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -74,7 +74,6 @@
                                                 </i>
                                             </div>
                                         </div>
-
 
                                     </div>
                                     <div class="modal-footer">
@@ -144,52 +143,53 @@
                                 </th>
                             </thead>
                             <tbody>
+                                {{-- @foreach($suppliers as $data)
                                 <tr>
                                     <td>
-                                        05-Dec-2022
-                                        15:00
+                                        {{ $data->delivery_date }}
                                     </td>
                                     <td>
-                                        MB01005
-                                        46
-                                    </td>
-                                    <td>CAP END
-                                        COMP
-                                        K84 </td>
+                                        {{ $data->item_number }}
                                     </td>
                                     <td>
-                                        NG1
+                                        {{ $data->item_name }}
+                                    </td>
                                     </td>
                                     <td>
-                                        400
-                                    </td>
-                                    <td>pcs
+                                        {{ $data->id }}
                                     </td>
                                     <td>
-                                        OK
+                                        {{ $data->quantity }}
+                                    </td>
+                                    <td>
+                                        {{ $data->satuan }}
+                                    </td>
+                                    <td>
+                                        {{ $data->millsheet }}
                                     </td>
                                     <td class="text-right">
-                                        Longgar
+                                        {{ $data->jenis_inspeksi }}
                                     </td>
                                     <td>
-                                        OK
+                                        {{ $data->visual_hasil_check }}
                                     </td>
                                     <td>
-                                        OK
+                                        {{ $data->dimensi }}
                                     </td>
                                     <td class="text-right">
-                                        N/A
+                                        {{ $data->hasil_trial_line }}
                                     </td>
                                     <td>
-                                        TIDAK ADA
+                                        {{ $data->kasus_reject }}
                                     </td>
                                     <td>
-                                        SETIAWAN
+                                        {{ $data->inspector_incoming }}
                                     </td>
                                     <td>
-                                        N/A
+                                        {{ $data->jr_analisis }}
                                     </td>
                                 </tr>
+                                @endforeach --}}
                             </tbody>
                         </table>
                     </div>

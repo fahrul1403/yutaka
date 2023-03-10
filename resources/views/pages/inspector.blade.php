@@ -191,129 +191,53 @@
                                     <th>Action</th>
                                 </thead>
                                 <tbody>
+                                    @foreach($suppliers as $data)
                                     <tr>
                                         <td>
-                                            05-Dec-2022
-                                            15:00
+                                            {{ $data->delivery_date }}
                                         </td>
                                         <td>
-                                            MB01005
-                                            46
-                                        </td>
-                                        <td>CAP END
-                                            COMP
-                                            K84 </td>
+                                            {{ $data->item_number }}
                                         </td>
                                         <td>
-                                            NG1
+                                            {{ $data->item_name }}
+                                        </td>
                                         </td>
                                         <td>
-                                            400
-                                        </td>
-                                        <td>pcs
+                                            {{ $data->id }}
                                         </td>
                                         <td>
-                                            OK
+                                            {{ $data->quantity }}
+                                        </td>
+                                        <td>
+                                            {{ $data->satuan }}
+                                        </td>
+                                        <td>
+                                            {{ $data->millsheet }}
                                         </td>
                                         <td class="text-right">
-                                            Longgar
+                                            {{ $data->jenis_inspeksi }}
                                         </td>
                                         <td>
-                                            OK
+                                            {{ $data->visual_hasil_check }}
                                         </td>
                                         <td>
-                                            OK
+                                            {{ $data->dimensi }}
                                         </td>
                                         <td class="text-right">
-                                            N/A
+                                            {{ $data->hasil_trial_line }}
                                         </td>
                                         <td>
-                                            TIDAK ADA
+                                            {{ $data->kasus_reject }}
                                         </td>
                                         <td>
-                                            SETIAWAN
+                                            {{ $data->inspector_incoming }}
                                         </td>
                                         <td>
-                                            N/A
-                                        </td>
-                                        <td>
-                                            <div>
-                                                <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                    data-target="#exampleModalLong">
-                                                    CONFIRM
-                                                </button>
-
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="exampleModalLong" tabindex="-1"
-                                                    role="dialog" aria-labelledby="exampleModalLongTitle"
-                                                    aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLongTitle">
-                                                                    KONFIRMASI</h5>
-
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <div class="form-group row">
-                                                                    <h5 class="col-sm-2 col-form-label">Delivery Time
-                                                                    </h5>
-                                                                    <div class="col-sm-10">
-                                                                        <input type="date" class="form-control"
-                                                                            placeholder="dd/mm/yyyy">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group row">
-                                                                    <h5 class="col-sm-2 col-form-label">Item Name</h5>
-                                                                    <div class="col-sm-10">
-                                                                        <input type="text" class="form-control">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group row">
-                                                                    <h5 class="col-sm-2 col-form-label">Item Numb</h5>
-                                                                    <div class="col-sm-10">
-                                                                        <input type="text" class="form-control">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group row">
-                                                                    <h5 class="col-sm-2 col-form-label">Supplier Name
-                                                                    </h5>
-                                                                    <div class="col-sm-10">
-                                                                        <input type="text" class="form-control">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group row">
-                                                                    <h5 class="col-sm-2 col-form-label">Jumlah</h5>
-                                                                    <div class="col-sm-10">
-                                                                        <input type="text" class="form-control">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group row">
-                                                                    <h5 class="col-sm-2 col-form-label">IDR</h5>
-                                                                    <div class="col-sm-10">
-                                                                        <i class="bi bi-camera-fill"> Camera<input
-                                                                                type="file"
-                                                                                accept="image/*;capture=camera"></i>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button"
-                                                                        class="btn btn-danger">TOLAK</button>
-                                                                    <button type="button"
-                                                                        class="btn btn-primary">APPROV</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            {{ $data->jr_analisis }}
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

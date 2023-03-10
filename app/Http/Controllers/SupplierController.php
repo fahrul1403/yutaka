@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Supplier;
+use App\Models\User;
 
 class SupplierController extends Controller
 {
@@ -11,9 +13,16 @@ class SupplierController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Supplier $supplier)
     {
-        return view('supplier.index');
+        $suppliers = $supplier->all();
+
+        return view('pages.inspector', [
+            'suppliers' => $suppliers,
+        ]
+
+        
+        );
     }
 
     /**
@@ -21,9 +30,9 @@ class SupplierController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create( Request $request)
     {
-        //
+        
     }
 
     /**
@@ -32,9 +41,21 @@ class SupplierController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Supplier $supplier, Request $request)
     {
-        //
+        $alldata = $request->all();
+        
+        $alldata['delivery_date'] = $supplier->delivery_date;
+        $alldata['itemName'] = $supplier->item_name;
+        $alldata['delivery_date'] = $supplier->delivery_date;
+        $alldata['delivery_date'] = $supplier->delivery_date;
+        $alldata['delivery_date'] = $supplier->delivery_date;
+        $alldata['delivery_date'] = $supplier->delivery_date;
+        $alldata['delivery_date'] = $supplier->delivery_date;
+        
+        // return $alldata;
+        // $supplier->create($alldata);
+        // return view('pages.tables');
     }
 
     /**

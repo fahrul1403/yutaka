@@ -2,6 +2,11 @@
 
 use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PageController;
+use Illuminate\Support\Facades\Auth;
 
 
 /*
@@ -19,15 +24,15 @@ Route::get('/', function () {
 	return view('welcome');
 });
 
-Route::resource('supplier', SupplierController::class);
-
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Auth::routes();
+Route::get('/inspector', [SupplierController::class, 'index'])->name('supplier');
+Route::get('/tables/{id}', [SupplierController::class, 'store'])->name('supplier.create');
 
-Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+// Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
+
+
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
@@ -40,10 +45,3 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('{page}', ['as' => 'page.index', 'uses' => 'App\Http\Controllers\PageController@index']);
 });
 
-Route::get('/supplier', function () {
-	return view('supplier');
-})->name('supplier');
-
-Route::get('/inspector', function () {
-	return view('inspector');
-});

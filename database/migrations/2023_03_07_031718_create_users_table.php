@@ -13,9 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('supplier_tabel', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('name');
+            $table->string('email');
+            $table->string('password');
+            $table->timestamp('email_verified_at');
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at');
+            // $table->timestamps();
         });
     }
 
@@ -26,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('supplier_tabel');
+        Schema::dropIfExists('users');
     }
 };
