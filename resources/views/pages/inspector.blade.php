@@ -205,7 +205,7 @@
                                         </td>
                                         </td>
                                         <td>
-                                            {{ $data->id }}
+                                            SUP-{{ $data->id }}
                                         </td>
                                         <td>
                                             {{ $data->quantity }}
