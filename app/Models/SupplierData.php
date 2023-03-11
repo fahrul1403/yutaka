@@ -32,4 +32,12 @@ class SupplierData extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    // items
+    public function Item()
+    {
+        return $this->belongsTo(Item::class);
+    }
+
+
 }

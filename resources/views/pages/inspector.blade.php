@@ -5,7 +5,6 @@
 
 @section('content')
 <div class="content">
-
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -15,7 +14,7 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table">
-                            <thead class=" text-primary">
+                            <thead class=" text-primary" align="center">
                                 <th>
                                     Delivery Date
                                 </th>
@@ -27,7 +26,7 @@
                                     Item
                                     Name
                                 </th>
-                                <th class="text-right">
+                                <th>
                                     Supplier
                                     ID
                                 </th>
@@ -47,7 +46,7 @@
                                     VISUAL
                                     HASIL CEK
                                 </th>
-                                <th class="text-right">
+                                <th>
                                     DIMENSI
                                     (INSP.JIG/CF)
                                 </th>
@@ -93,7 +92,7 @@
                                     <td>
                                         OK
                                     </td>
-                                    <td class="text-right">
+                                    <td>
                                         Longgar
                                     </td>
                                     <td>
@@ -102,7 +101,7 @@
                                     <td>
                                         OK
                                     </td>
-                                    <td class="text-right">
+                                    <td>
                                         N/A
                                     </td>
                                     <td>
@@ -119,137 +118,252 @@
                         </table>
                     </div>
                 </div>
+
             </div>
         </div>
 
-        </table>
-    </div>
+
+        <div class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title"> INCOMING - WAITING FOR APPROVAL</h4>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <table class="table">
+                                    <thead class=" text-primary" align="center">
+                                        <th>
+                                            Delivery Date
+                                        </th>
+                                        <th>
+                                            Item
+                                            Number
+                                        </th>
+                                        <th>
+                                            Item
+                                            Name
+                                        </th>
+                                        <th>
+                                            Supplier
+                                            ID
+                                        </th>
+                                        <th>
+                                            Qty
+                                        </th>
+                                        <th>
+                                            Satuan
+                                        </th>
+
+                                        <th>Approval</th>
+                                    </thead>
+                                    <tbody align="center">
+                                        @foreach ($suppliers as $data )
+                                        <tr>
+                                            <td>
+                                               {{ $data->delivery_date }}
+                                            </td>
+                                            <td>
+                                                {{ $data->item_number }}
+                                            </td>
+                                            <td>
+                                                {{ $data->item_name }} </td>
+                                            </td>
+                                            <td>
+                                                SUP-{{ $data->User->id }}
+                                            </td>
+                                            <td>
+                                                {{ $data->quantity }}
+                                            </td>
+                                            <td>pcs
+                                            </td>
+                                        @endforeach
+
+                                            <td>
+                                                <div>
+                                                    <!-- Button trigger modal -->
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                        data-target="#exampleModalLong">
+                                                        CONFIRM
+                                                    </button>
+
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="exampleModalLong" tabindex="-1"
+                                                        role="dialog" aria-labelledby="exampleModalLongTitle"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLongTitle">
+                                                                        KONFIRMASI</h5>
+
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="form-group row">
+                                                                        <h5 class="col-sm-4 col-form-label">IRD Delivery
+                                                                        </h5>
+
+                                                                        <div class="btn-group">
+                                                                            <button
+                                                                                class="btn btn-secondary btn-sm dropdown-toggle"
+                                                                                type="button" data-toggle="dropdown"
+                                                                                aria-haspopup="true"
+                                                                                aria-expanded="false">
+                                                                                Pilih
+                                                                            </button>
+                                                                            <div class="dropdown-menu">
+                                                                                <a class="dropdown-item" href="#">OK</a>
+                                                                                <a class="dropdown-item" href="#">NG</a>
+                                                                                <a class="dropdown-item" href="#">TIdak
+                                                                                    ada</a>
 
 
-    <div class="content">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title"> INCOMING - WAITING FOR APPROVAL</h4>
-                    </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <h5 class="col-sm-4 col-form-label">Jenis
+                                                                            Inspeksi
+                                                                        </h5>
+                                                                        <div class="btn-group">
+                                                                            <button type="button"
+                                                                                class="btn btn-danger dropdown-toggle"
+                                                                                data-toggle="dropdown"
+                                                                                aria-haspopup="true"
+                                                                                aria-expanded="false">
+                                                                                Pilih
+                                                                            </button>
+                                                                            <div class="dropdown-menu">
+                                                                                <a class="dropdown-item" href="#">L</a>
+                                                                                <a class="dropdown-item" href="#">N</a>
+                                                                                <a class="dropdown-item" href="#">K</a>
 
-                    <div class="card-body">
-                        <div class="table-responsive">
 
-                            <table class="table">
-                                <thead class=" text-primary">
-                                    <th>
-                                        Delivery Date
-                                    </th>
-                                    <th>
-                                        Item
-                                        Number
-                                    </th>
-                                    <th>
-                                        Item
-                                        Name
-                                    </th>
-                                    <th class="text-right">
-                                        Supplier
-                                        ID
-                                    </th>
-                                    <th>
-                                        Qty
-                                    </th>
-                                    <th>
-                                        Satuan
-                                    </th>
-                                    <th>IRD/COA/MIL
-                                        LSHEET
-                                    </th>
-                                    <th>
-                                        Jenis Inspeksi
-                                    </th>
-                                    <th>
-                                        VISUAL
-                                        HASIL CEK
-                                    </th>
-                                    <th class="text-right">
-                                        DIMENSI
-                                        (INSP.JIG/CF)
-                                    </th>
-                                    <th>
-                                        Hasil
-                                        Trial
-                                        Line
-                                    </th>
-                                    <th>
-                                        KASUS REJECT
-                                    </th>
-                                    <th>
-                                        INSPECTOR INCOMING
-                                    </th>
-                                    <th class="text-right">
-                                        Jr.
-                                        Analyst
-                                    </th>
-                                    <th>Action</th>
-                                </thead>
-                                <tbody>
-                                    @foreach($suppliers as $data)
-                                    <tr>
-                                        <td>
-                                            {{ $data->created_at }}
-                                        </td>
-                                        <td>
-                                            {{ $data->item_number }}
-                                        </td>
-                                        <td>
-                                            {{ $data->item_name }}
-                                        </td>
-                                        </td>
-                                        <td>
-                                            SUP-{{ $data->id }}
-                                        </td>
-                                        <td>
-                                            {{ $data->quantity }}
-                                        </td>
-                                        <td>
-                                            {{ $data->satuan }}
-                                        </td>
-                                        <td>
-                                            {{ $data->millsheet }}
-                                        </td>
-                                        <td class="text-right">
-                                            {{ $data->jenis_inspeksi }}
-                                        </td>
-                                        <td>
-                                            {{ $data->visual_hasil_check }}
-                                        </td>
-                                        <td>
-                                            {{ $data->dimensi }}
-                                        </td>
-                                        <td class="text-right">
-                                            {{ $data->hasil_trial_line }}
-                                        </td>
-                                        <td>
-                                            {{ $data->kasus_reject }}
-                                        </td>
-                                        <td>
-                                            {{ $data->inspector_incoming }}
-                                        </td>
-                                        <td>
-                                            {{ $data->jr_analisis }}
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <h5 class="col-sm-4 col-form-label">Hasil
+                                                                            Visual
+                                                                        </h5>
+                                                                        <div class="btn-group">
+                                                                            <button type="button"
+                                                                                class="btn btn-danger dropdown-toggle"
+                                                                                data-toggle="dropdown"
+                                                                                aria-haspopup="true"
+                                                                                aria-expanded="false">
+                                                                                Pilih
+                                                                            </button>
+                                                                            <div class="dropdown-menu">
+                                                                                <a class="dropdown-item" href="#">OK</a>
+                                                                                <a class="dropdown-item" href="#">NG</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <h5 class="col-sm-4 col-form-label">Cek
+                                                                            Dimensi
+                                                                        </h5>
+
+                                                                        <div class="btn-group">
+                                                                            <button type="button"
+                                                                                class="btn btn-danger dropdown-toggle"
+                                                                                data-toggle="dropdown"
+                                                                                aria-haspopup="true"
+                                                                                aria-expanded="false">
+                                                                                Pilih
+                                                                            </button>
+                                                                            <div class="dropdown-menu">
+                                                                                <a class="dropdown-item" href="#">OK</a>
+                                                                                <a class="dropdown-item" href="#">NG</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="form-group row">
+                                                                        <h5 class="col-sm-4 col-form-label">Hasil
+                                                                            Trial
+                                                                        </h5>
+                                                                        <div class="btn-group">
+                                                                            <button type="button"
+                                                                                class="btn btn-danger dropdown-toggle"
+                                                                                data-toggle="dropdown"
+                                                                                aria-haspopup="true"
+                                                                                aria-expanded="false">
+                                                                                Pilih
+                                                                            </button>
+                                                                            <div class="dropdown-menu">
+                                                                                <a class="dropdown-item" href="#">OK</a>
+                                                                                <a class="dropdown-item" href="#">NG</a>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <h5 class="col-sm-4 col-form-label">Kasus
+                                                                            Reject
+                                                                        </h5>
+                                                                        <div class="col-sm-8">
+                                                                            <input type="text" class="form-control">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="form-group row">
+                                                                        <h5 class="col-sm-4 col-form-label">
+                                                                            Inspector
+                                                                        </h5>
+                                                                        <div class="btn-group">
+                                                                            <button
+                                                                                class="btn btn-secondary btn-sm dropdown-toggle"
+                                                                                type="button" data-toggle="dropdown"
+                                                                                aria-haspopup="true"
+                                                                                aria-expanded="false">
+                                                                                Pilih
+                                                                            </button>
+                                                                            <div class="dropdown-menu">
+                                                                                <a class="dropdown-item"
+                                                                                    href="#">FAHRUL</a>
+                                                                                <a class="dropdown-item"
+                                                                                    href="#">HAIKAL</a>
+                                                                                <a class="dropdown-item"
+                                                                                    href="#">SUITAMA</a>
+
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                    <div class="modal-footer">
+                                                                        <button type="button"
+                                                                            class="btn btn-danger">TOLAK</button>
+                                                                        <button type="button"
+                                                                            class="btn btn-primary">APPROV</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            </table>
+                </table>
+            </div>
         </div>
     </div>
-</div>
 </div>
 </div>
 </div>

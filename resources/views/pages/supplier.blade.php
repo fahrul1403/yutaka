@@ -31,55 +31,70 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form method="post" action="{{ route('supplier') }}">
+                                <form method="post" action="{{ route('supplier.data.create') }}">
                                     <div class="modal-body">
                                         <div class="form-group row">
-                                            <h5 class="col-sm-2 col-form-label">Delivery Time</h5>
-                                            <div class="col-sm-10">
-                                                <input type="date" class="form-control" placeholder="dd/mm/yyyy"
-                                                    name="delivery_date" id="date">
+                                            <h5 class="col-sm-4 col-form-label">Delivery Time</h5>
+                                            <div class="col-sm-7">
+                                                <input id="date" name="delivery_date" type="date">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <h5 class="col-sm-2 col-form-label">Item Name</h5>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="itemName" name="itemName">
+                                            <h5 class="col-sm-4 col-form-label">Item Name</h5>
+                                            <select name="item_name">
+                                                @foreach ($items as $data)
+                                                 <option name='name' value="{{ $data->name }}"> {{ $data->name }} </option>
+                                                @endforeach
+                                              </select>
+                                        </div>
+                                        <div class="form-group row">
+                                            <h5 class="col-sm-4 col-form-label">Item Numb</h5>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" id="itemNumb" name="item_number">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <h5 class="col-sm-2 col-form-label">Item Numb</h5>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="itemNumb" name="itemNumb">
+                                            <h5 class="col-sm-4 col-form-label">Supplier Name</h5>
+                                            <div class="btn-group">
+                                                <select name="supplier_name">
+                                                @foreach ($users as $data)
+                                                    @if ($data->role_id === 3)
+                                                        <option value="{{ $data->name }}"> {{ $data->name }} </option>
+                                                    @endif
+                                                @endforeach
+                                                  </select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <h5 class="col-sm-2 col-form-label">Supplier Name</h5>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="supplierName"
-                                                    name="supplierName">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <h5 class="col-sm-2 col-form-label">Jumlah</h5>
-                                            <div class="col-sm-10">
+                                            <h5 class="col-sm-4 col-form-label">Jumlah</h5>
+                                            <div class="col-sm-7">
                                                 <input type="text" class="form-control" id="jumlah" name="jumlah">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <h5 class="col-sm-2 col-form-label">IDR</h5>
-                                            <div class="col-sm-10">
-                                                <input class="bi bi-camera-fill"> Camera<input type="file"
-                                                    accept="image/*;capture=camera">
-                                                </input>
-                                                </i>
+                                            <h5 class="col-sm-4 col-form-label">Satuan</h5>
+                                            <div class="col-sm-7">
+                                                <option selected="selected">
+                                                    Pcs
+                                                </option>
                                             </div>
                                         </div>
+                                        <div class="form-group row">
+                                            <h5 class="col-sm-4 col-form-label">IDR</h5>
+                                            <div action="upload.php" method="post" enctype="multipart/form-data">
+                                                <input type="file" name="gambar">
+                                                <input type="submit" name="submit" value="Ambil Gambar">
+                                            </div>
+
+                                            <div id="hasil-gambar"></div>
+                                        </div>
+
 
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Submit</button>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
                                 </form>
                             </div>
@@ -90,7 +105,7 @@
                     <div class="table-responsive">
 
                         <table class="table">
-                            <thead class=" text-primary">
+                            <thead class=" text-primary" align="center">
                                 <th>
                                     Delivery Date
                                 </th>
@@ -102,7 +117,7 @@
                                     Item
                                     Name
                                 </th>
-                                <th class="text-right">
+                                <th>
                                     Supplier
                                     ID
                                 </th>
@@ -122,7 +137,7 @@
                                     VISUAL
                                     HASIL CEK
                                 </th>
-                                <th class="text-right">
+                                <th>
                                     DIMENSI
                                     (INSP.JIG/CF)
                                 </th>
@@ -137,59 +152,58 @@
                                 <th>
                                     INSPECTOR INCOMING
                                 </th>
-                                <th class="text-right">
+                                <th>
                                     Jr.
                                     Analyst
                                 </th>
                             </thead>
-                            <tbody>
-                                {{-- @foreach($suppliers as $data)
+                            <tbody align="center">
                                 <tr>
                                     <td>
-                                        {{ $data->delivery_date }}
+                                        05-Dec-2022
+                                        15:00
                                     </td>
                                     <td>
-                                        {{ $data->item_number }}
+                                        MB01005
+                                        46
+                                    </td>
+                                    <td>CAP END
+                                        COMP
+                                        K84 </td>
                                     </td>
                                     <td>
-                                        {{ $data->item_name }}
-                                    </td>
-                                    </td>
-                                    <td>
-                                        {{ $data->id }}
+                                        NG1
                                     </td>
                                     <td>
-                                        {{ $data->quantity }}
+                                        400
+                                    </td>
+                                    <td>pcs
                                     </td>
                                     <td>
-                                        {{ $data->satuan }}
+                                        OK
                                     </td>
                                     <td>
-                                        {{ $data->millsheet }}
-                                    </td>
-                                    <td class="text-right">
-                                        {{ $data->jenis_inspeksi }}
+                                        Longgar
                                     </td>
                                     <td>
-                                        {{ $data->visual_hasil_check }}
+                                        OK
                                     </td>
                                     <td>
-                                        {{ $data->dimensi }}
-                                    </td>
-                                    <td class="text-right">
-                                        {{ $data->hasil_trial_line }}
+                                        OK
                                     </td>
                                     <td>
-                                        {{ $data->kasus_reject }}
+                                        N/A
                                     </td>
                                     <td>
-                                        {{ $data->inspector_incoming }}
+                                        TIDAK ADA
                                     </td>
                                     <td>
-                                        {{ $data->jr_analisis }}
+                                        SETIAWAN
+                                    </td>
+                                    <td>
+                                        N/A
                                     </td>
                                 </tr>
-                                @endforeach --}}
                             </tbody>
                         </table>
                     </div>
@@ -212,7 +226,7 @@
                         <div class="table-responsive">
 
                             <table class="table">
-                                <thead class=" text-primary">
+                                <thead class=" text-primary" align="center">
                                     <th>
                                         Delivery Date
                                     </th>
@@ -224,7 +238,7 @@
                                         Item
                                         Name
                                     </th>
-                                    <th class="text-right">
+                                    <th>
                                         Supplier
                                         ID
                                     </th>
@@ -244,7 +258,7 @@
                                         VISUAL
                                         HASIL CEK
                                     </th>
-                                    <th class="text-right">
+                                    <th>
                                         DIMENSI
                                         (INSP.JIG/CF)
                                     </th>
@@ -259,7 +273,7 @@
                                     <th>
                                         INSPECTOR INCOMING
                                     </th>
-                                    <th class="text-right">
+                                    <th>
                                         Jr.
                                         Analyst
                                     </th>

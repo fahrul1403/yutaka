@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\SupplierDataController;
+use App\Http\Controllers\InspectorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -27,8 +28,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/inspector', [SupplierDataController::class, 'index'])->name('supplier');
-Route::get('/tables/{id}', [SupplierController::class, 'store'])->name('supplier.create');
+Route::get('/inspector', [InspectorController::class, 'index'])->name('inspector');
+Route::get('/suplier', [SupplierDataController::class, 'index'])->name('supplier');
+Route::post('/suplier', [SupplierDataController::class, 'create'])->name('supplier.data.create');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 // Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
@@ -42,7 +44,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 });
 
-Route::group(['middleware' => 'auth'], function () {
-	Route::get('{page}', ['as' => 'page.index', 'uses' => 'App\Http\Controllers\PageController@index']);
-});
+// Route::group(['middleware' => 'auth'], function () {
+// 	Route::get('{page}', ['as' => 'page.index', 'uses' => 'App\Http\Controllers\PageController@index']);
+// });
 
