@@ -5,6 +5,7 @@ use App\Http\Controllers\SupplierDataController;
 use App\Http\Controllers\InspectorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Models\Item;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PageController;
@@ -28,11 +29,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/inspector', [InspectorController::class, 'index'])->name('inspector');
-Route::get('/suplier', [SupplierDataController::class, 'index'])->name('supplier');
-Route::post('/suplier', [SupplierDataController::class, 'create'])->name('supplier.data.create');
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
 // Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 
 
@@ -42,6 +39,22 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
+
+
+	Route::get('/inspector', [InspectorController::class, 'index'])->name('inspector');
+	Route::post('/inspector', [InspectorController::class, 'store'])->name('supplier.data.store');
+	// Route::post('/inspector', [InspectorController::class, 'terima'])->name('terima.data');	
+	// Route::post('/inspector', [InspectorController::class, 'tolak'])->name('tolak');
+
+	Route::get('/suplier', [SupplierDataController::class, 'index'])->name('supplier');
+	Route::post('/suplier', [SupplierDataController::class, 'create'])->name('supplier.data.create');
+
+	Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+
+
+
+
 });
 
 // Route::group(['middleware' => 'auth'], function () {

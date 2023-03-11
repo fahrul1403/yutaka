@@ -31,7 +31,7 @@ class SupplierDataSeeder extends Seeder
         'kasus_reject' => 'N/A',
         'inspector_incoming' => 'Ahmad', 
         'jr_analisis' => 'N/A',
-        'show_status' => 'OK',
+        'show_status' => 'ditinjau',
         'created_at' => now(),
         'updated_at' => now(),
         ]);

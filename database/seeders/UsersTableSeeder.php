@@ -38,7 +38,7 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => now()
             ],
             [
-                'name' => 'Angga',
+                'name' => 'PT ABC Biru',
                 'role_id' => '3',
                 'email' => 'supplier@yutaka.co.id',
                 'address' => 'Jawa Barat',
@@ -49,7 +49,7 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => now()
             ],
             [
-                'name' => 'Andi',
+                'name' => 'PT Teknologi Nusantara',
                 'role_id' => '3',
                 'email' => 'supplier@yutaka.co.id',
                 'address' => 'Jawa Barat',

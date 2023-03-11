@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('kasus_reject')->nullable();
             $table->string('inspector_incoming')->nullable();
             $table->string('jr_analisis')->nullable();
-            $table->string('show_status')->nullable();
+            $table->string('show_status')->default('ditinjau');
             $table->timestamps();
         });
     }

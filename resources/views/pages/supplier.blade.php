@@ -32,6 +32,7 @@
                                     </button>
                                 </div>
                                 <form method="post" action="{{ route('supplier.data.create') }}">
+                                    @csrf
                                     <div class="modal-body">
                                         <div class="form-group row">
                                             <h5 class="col-sm-4 col-form-label">Delivery Time</h5>
@@ -56,10 +57,10 @@
                                         <div class="form-group row">
                                             <h5 class="col-sm-4 col-form-label">Supplier Name</h5>
                                             <div class="btn-group">
-                                                <select name="supplier_name">
+                                                <select name="user_id">
                                                 @foreach ($users as $data)
                                                     @if ($data->role_id === 3)
-                                                        <option value="{{ $data->name }}"> {{ $data->name }} </option>
+                                                        <option value="{{ $data->id }}"> {{ $data->name }} </option>
                                                     @endif
                                                 @endforeach
                                                   </select>
@@ -68,20 +69,26 @@
                                         <div class="form-group row">
                                             <h5 class="col-sm-4 col-form-label">Jumlah</h5>
                                             <div class="col-sm-7">
-                                                <input type="text" class="form-control" id="jumlah" name="jumlah">
+                                                <input type="text" class="form-control" id="jumlah" name="quantity">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <h5 class="col-sm-4 col-form-label">Satuan</h5>
                                             <div class="col-sm-7">
-                                                <option selected="selected">
-                                                    Pcs
-                                                </option>
+                                                <select name="satuan">
+                                                    <option selected="selected">
+                                                        Pcs
+                                                    </option>
+                                                    <option>
+                                                        Set
+                                                    </option>
+                                                </select>
+                                               
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <h5 class="col-sm-4 col-form-label">IDR</h5>
-                                            <div action="upload.php" method="post" enctype="multipart/form-data">
+                                            <div action="" method="post" enctype="multipart/form-data">
                                                 <input type="file" name="gambar">
                                                 <input type="submit" name="submit" value="Ambil Gambar">
                                             </div>
@@ -158,52 +165,55 @@
                                 </th>
                             </thead>
                             <tbody align="center">
-                                <tr>
-                                    <td>
-                                        05-Dec-2022
-                                        15:00
-                                    </td>
-                                    <td>
-                                        MB01005
-                                        46
-                                    </td>
-                                    <td>CAP END
-                                        COMP
-                                        K84 </td>
-                                    </td>
-                                    <td>
-                                        NG1
-                                    </td>
-                                    <td>
-                                        400
-                                    </td>
-                                    <td>pcs
-                                    </td>
-                                    <td>
-                                        OK
-                                    </td>
-                                    <td>
-                                        Longgar
-                                    </td>
-                                    <td>
-                                        OK
-                                    </td>
-                                    <td>
-                                        OK
-                                    </td>
-                                    <td>
-                                        N/A
-                                    </td>
-                                    <td>
-                                        TIDAK ADA
-                                    </td>
-                                    <td>
-                                        SETIAWAN
-                                    </td>
-                                    <td>
-                                        N/A
-                                    </td>
-                                </tr>
+                                @foreach ($suppliers as $data)
+                                    @if($data->show_status == 'diterima')
+                                    <tr>
+                                        <td>
+                                           {{ $data->delivery_date }}
+                                        </td>
+                                        <td>
+                                            {{ $data->item_number }}
+
+                                        </td>
+                                        <td>
+                                            {{ $data->item_name }}
+                                        </td>
+                                        <td>
+                                            {{ $data->supplier_id }}
+                                        </td>
+                                        <td>
+                                            {{ $data->quantity }}
+                                        </td>
+                                        <td>
+                                            {{ $data->satuan }}
+                                        </td>
+                                        <td>
+                                            {{ $data->millsheet }}
+                                        </td>
+                                        <td>
+                                            {{ $data->jenis_inspeksi }}
+                                        </td>
+                                        <td>
+                                            {{ $data->visual_hasil_check }}
+                                        </td>
+                                        <td>
+                                            {{ $data->dimensi }}
+                                        </td>
+                                        <td>
+                                            {{ $data->hasil_trial }}
+                                        </td>
+                                        <td>
+                                            {{ $data->kasus_reject }}
+                                        </td>
+                                        <td>
+                                            {{ $data->inspector_incoming }}
+                                        </td>
+                                        <td>
+                                            {{ $data->jr_analisis }}
+                                        </td>
+                                    </tr>
+                                    @endif
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -280,78 +290,55 @@
                                     <th>Action</th>
                                 </thead>
                                 <tbody>
+                                    @foreach ($suppliers as $data)
+                                    @if($data->show_status == 'ditolak')
                                     <tr>
-
                                         <td>
-                                            <div>
-                                                <!-- Button trigger modal -->
+                                           {{ $data->delivery_date }}
+                                        </td>
+                                        <td>
+                                            {{ $data->item_number }}
 
-
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="exampleModalLong" tabindex="-1"
-                                                    role="dialog" aria-labelledby="exampleModalLongTitle"
-                                                    aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLongTitle">New
-                                                                    Supply Part</h5>
-
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <div class="form-group row">
-                                                                    <h5 class="col-sm-2 col-form-label">Delivery Time
-                                                                    </h5>
-                                                                    <div class="col-sm-10">
-                                                                        <input type="date" class="form-control"
-                                                                            placeholder="dd/mm/yyyy">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group row">
-                                                                    <h5 class="col-sm-2 col-form-label">Item Name</h5>
-                                                                    <div class="col-sm-10">
-                                                                        <input type="text" class="form-control">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group row">
-                                                                    <h5 class="col-sm-2 col-form-label">Item Numb</h5>
-                                                                    <div class="col-sm-10">
-                                                                        <input type="text" class="form-control">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group row">
-                                                                    <h5 class="col-sm-2 col-form-label">Supplier Name
-                                                                    </h5>
-                                                                    <div class="col-sm-10">
-                                                                        <input type="text" class="form-control">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group row">
-                                                                    <h5 class="col-sm-2 col-form-label">Jumlah</h5>
-                                                                    <div class="col-sm-10">
-                                                                        <input type="text" class="form-control">
-                                                                    </div>
-                                                                </div>
-
-
-
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-dismiss="modal">Close</button>
-                                                                <button type="button"
-                                                                    class="btn btn-primary">Submit</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        </td>
+                                        <td>
+                                            {{ $data->item_name }}
+                                        </td>
+                                        <td>
+                                            {{ $data->supplier_id }}
+                                        </td>
+                                        <td>
+                                            {{ $data->quantity }}
+                                        </td>
+                                        <td>
+                                            {{ $data->satuan }}
+                                        </td>
+                                        <td>
+                                            {{ $data->millsheet }}
+                                        </td>
+                                        <td>
+                                            {{ $data->jenis_inspeksi }}
+                                        </td>
+                                        <td>
+                                            {{ $data->visual_hasil_check }}
+                                        </td>
+                                        <td>
+                                            {{ $data->dimensi }}
+                                        </td>
+                                        <td>
+                                            {{ $data->hasil_trial }}
+                                        </td>
+                                        <td>
+                                            {{ $data->kasus_reject }}
+                                        </td>
+                                        <td>
+                                            {{ $data->User->id }}
+                                        </td>
+                                        <td>
+                                            {{ $data->jr_analisis }}
                                         </td>
                                     </tr>
+                                    @endif
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>

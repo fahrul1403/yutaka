@@ -14,6 +14,9 @@ class SupplierDataController extends Controller
         $suppliers = $supplier->all();
         $users = $user->all();
         $items = $item->all();
+        
+        
+
 
         return view('pages.supplier', [
             'suppliers' => $suppliers,
@@ -25,31 +28,31 @@ class SupplierDataController extends Controller
         );
     }
 
-    public function create( Request $request)
+    public function create( Request $request, SupplierData $supplierData)
     {
         $data = $request->all();
-        
-        return $data;
+        // return $data;
 
-        $supplier = new SupplierData;
-        $supplier->delivery_date = $request->delivery_date;
-        $supplier->item_number = $request->item_number;
-        $supplier->item_name = $request->item_name;
-        $supplier->quantity = $request->quantity;
-        $supplier->Satuan = $request->Satuan;
-        $supplier->millsheet = $request->millsheet;
-        $supplier->jenis_inspeksi = $request->jenis_inspeksi;
-        $supplier->visual_hasil_check = $request->visual_hasil_check;
-        $supplier->dimensi = $request->dimensi;
-        $supplier->hasil_trial_line = $request->hasil_trial_line;
-        $supplier->kasus_reject = $request->kasus_reject;
-        $supplier->inspector_incoming = $request->inspector_incoming;
-        $supplier->jr_analisis = $request->jr_analisis;
-        $supplier->show_status = $request->show_status;
-        $supplier->save();
+        $supplierData = new SupplierData;
+        $supplierData->user_id = $request->user_id;
+        $supplierData->delivery_date = $request->delivery_date;
+        $supplierData->item_number = $request->item_number;
+        $supplierData->item_name = $request->item_name;
+        $supplierData->quantity = $request->quantity;
+        $supplierData->satuan = $request->satuan;
+
+        $supplierData->save();
+        
+
+
+        return redirect()->route('supplier');
+        // return $supplierData;
 
         // return redirect()->route('inspector');
 
     
     }
+
+   
+
 }

@@ -9,6 +9,8 @@ class SupplierData extends Model
 {
     use HasFactory;
 
+    protected $table = 'supplier_data';
+
     protected $fillable = [
         'delivery_date',
         'item_number',
