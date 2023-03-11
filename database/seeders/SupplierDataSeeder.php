@@ -16,7 +16,7 @@ class SupplierDataSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('suppliers')->insert([
+        DB::table('supplier_data')->insert([
         'delivery_date' => now(),
         'user_id' => '1',
         'item_number' => 'GN1',

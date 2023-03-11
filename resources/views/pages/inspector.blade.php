@@ -232,7 +232,7 @@
                                             {{ $data->kasus_reject }}
                                         </td>
                                         <td>
-                                            {{ $data->User->name }}
+                                            {{ $data->inspector_incoming }}
                                         </td>
                                         <td>
                                             {{ $data->jr_analisis }}

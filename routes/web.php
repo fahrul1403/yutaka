@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\SupplierDataController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -26,7 +27,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/inspector', [SupplierController::class, 'index'])->name('supplier');
+Route::get('/inspector', [SupplierDataController::class, 'index'])->name('supplier');
 Route::get('/tables/{id}', [SupplierController::class, 'store'])->name('supplier.create');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Supplier;
+use App\Models\SupplierData;
 use App\Models\User;
 
 class SupplierController extends Controller
@@ -13,7 +13,7 @@ class SupplierController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Supplier $supplier)
+    public function index(SupplierData $supplier)
     {
         $suppliers = $supplier->all();
 
@@ -41,7 +41,7 @@ class SupplierController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Supplier $supplier, Request $request)
+    public function store(SupplierData $supplier, Request $request)
     {
         $alldata = $request->all();
         

@@ -16,20 +16,10 @@ return new class extends Migration
         Schema::create('suppliers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->string('delivery_date')->nullable();
-            $table->string('item_number')->nullable();
-            $table->string('item_name')->nullable();
-            $table->string('quantity')->nullable();
-            $table->string('Satuan')->nullable();
-            $table->string('millsheet')->nullable();
-            $table->string('jenis_inspeksi')->nullable();
-            $table->string('visual_hasil_check')->nullable();
-            $table->string('dimensi')->nullable();
-            $table->string('hasil_trial_line')->nullable();
-            $table->string('kasus_reject')->nullable();
-            $table->string('inspector_incoming')->nullable();
-            $table->string('jr_analisis')->nullable();
-            $table->string('show_status')->nullable();
+            $table->string('name');
+            $table->string('email');
+            $table->string('address');
+            $table->string('phone');
             $table->timestamps();
         });
     }
