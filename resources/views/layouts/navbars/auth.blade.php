@@ -1,7 +1,3 @@
-@php
-    $elementActive;
-@endphp
-
 <div class="sidebar" data-color="white" data-active-color="danger">
     <div class="logo">
         <a href="http://www.creative-tim.com" class="simple-text logo-mini">
@@ -16,20 +12,20 @@
     <div class="sidebar-wrapper">
         <ul class="nav">
             <li class="{{ $elementActive == 'dashboard' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'dashboard') }}">
+                <a href="{{ route('home') }}">
                     <i class="nc-icon nc-bank"></i>
                     <p>{{ __('Dashboard') }}</p>
                 </a>
             </li>
 
             <li class="{{ $elementActive == 'tables' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'tables') }}">
+                <a href="{{ route('supplier') }}">
                     <i class="nc-icon nc-tile-56"></i>
                     <p>{{ __('Supplier table') }}</p>
                 </a>
             </li>
             <li class="{{ $elementActive == 'inspector' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'inspector') }}">
+                <a href="{{ route('inspector') }}">
                     <i class="nc-icon nc-tile-56"></i>
                     <p>{{ __('Inspector table') }}</p>
                 </a>

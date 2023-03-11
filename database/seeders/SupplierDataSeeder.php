@@ -16,7 +16,7 @@ class SupplierDataSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('suppliers')->insert([
+        DB::table('supplier_data')->insert([
         'delivery_date' => now(),
         'user_id' => '1',
         'item_number' => 'GN1',
@@ -31,7 +31,7 @@ class SupplierDataSeeder extends Seeder
         'kasus_reject' => 'N/A',
         'inspector_incoming' => 'Ahmad', 
         'jr_analisis' => 'N/A',
-        'show_status' => 'OK',
+        'show_status' => 'ditinjau',
         'created_at' => now(),
         'updated_at' => now(),
         ]);
