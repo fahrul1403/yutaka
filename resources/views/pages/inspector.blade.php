@@ -5,6 +5,7 @@
 
 @section('content')
 <div class="content">
+
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -194,7 +195,7 @@
                                     @foreach($suppliers as $data)
                                     <tr>
                                         <td>
-                                            {{ $data->delivery_date }}
+                                            {{ $data->created_at }}
                                         </td>
                                         <td>
                                             {{ $data->item_number }}
@@ -231,7 +232,7 @@
                                             {{ $data->kasus_reject }}
                                         </td>
                                         <td>
-                                            {{ $data->inspector_incoming }}
+                                            {{ $data->User->name }}
                                         </td>
                                         <td>
                                             {{ $data->jr_analisis }}

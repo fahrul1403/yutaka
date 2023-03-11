@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('suppliers', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
             $table->string('delivery_date')->nullable();
             $table->string('item_number')->nullable();
             $table->string('item_name')->nullable();
